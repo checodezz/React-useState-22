@@ -122,6 +122,44 @@ const ShoppingCart = () => {
     </div>
   );
 };
+
+const Quiz = () => {
+  const questions = [
+    "What is the national bird of India?",
+    "How many colors are there in Indian flag?",
+    "What is the color of sky?",
+  ];
+
+  const [question, setQuestion] = useState(0);
+  const [answers, setAnswers] = useState("");
+
+  const handleNextQuestion = () => {
+    setQuestion(question + 1);
+    // console.log(questions[questions]);
+    console.log(questions.length);
+    console.log(question);
+    setAnswers("");
+  };
+
+  return (
+    <div>
+      <h2>Quiz App</h2>
+      {question <= questions.length - 1 && (
+        <>
+          <p>{questions[question]}</p>
+
+          <input
+            required
+            value={answers}
+            onChange={(event) => setAnswers(event.target.value)}
+          />
+          <button onClick={handleNextQuestion}>Next</button>
+        </>
+      )}
+      {question >= questions.length - 1 && <p>You answered all questions!</p>}
+    </div>
+  );
+};
 export default function App() {
   return (
     <main>
@@ -132,6 +170,8 @@ export default function App() {
       <TempConverter />
       <br />
       <ShoppingCart />
+      <br />
+      <Quiz />
     </main>
   );
 }
